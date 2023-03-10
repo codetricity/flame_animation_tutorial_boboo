@@ -1,3 +1,6 @@
+linux/
+android/
+
 # Miscellaneous
 *.class
 *.log

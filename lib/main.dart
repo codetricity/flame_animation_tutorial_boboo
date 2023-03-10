@@ -29,11 +29,15 @@ class BobooGame extends FlameGame with HasTappables, HasDraggables {
   BobooDirection bobooDirection = BobooDirection.down;
   final speed = 1.5;
   late TextComponent joystickDirectionText;
+  SpriteComponent background = SpriteComponent();
 
   @override
   Color backgroundColor() => const Color.fromARGB(255, 41, 98, 139);
   @override
   FutureOr<void> onLoad() async {
+    add(background
+      ..sprite = await loadSprite('background.png')
+      ..size = size);
     boboo
       ..animations = {
         BobooState.idleSouth: await createAnimation(row: 1),
@@ -50,12 +54,12 @@ class BobooGame extends FlameGame with HasTappables, HasDraggables {
 
     add(boboo);
 
-    final knobPaint = BasicPalette.blue.withAlpha(200).paint();
-    final backgroundPaint = BasicPalette.blue.withAlpha(100).paint();
+    final knobPaint = BasicPalette.red.withAlpha(200).paint();
+    final backgroundPaint = BasicPalette.black.withAlpha(100).paint();
     joystick = JoystickComponent(
       knob: CircleComponent(radius: 30, paint: knobPaint),
       background: CircleComponent(radius: 100, paint: backgroundPaint),
-      margin: const EdgeInsets.only(left: 40, bottom: 40),
+      margin: const EdgeInsets.only(left: 20, bottom: 20),
     );
     add(joystick);
     joystickDirectionText = TextComponent(
@@ -139,9 +143,10 @@ class BobooGame extends FlameGame with HasTappables, HasDraggables {
   void onGameResize(Vector2 canvasSize) {
     boboo
       ..size = canvasSize.x > canvasSize.y
-          ? Vector2.all(canvasSize.y)
-          : Vector2.all(canvasSize.x)
+          ? Vector2.all(canvasSize.y) * .8
+          : Vector2.all(canvasSize.x) * .8
       ..position = canvasSize / 2;
+    background.size = canvasSize;
     super.onGameResize(canvasSize);
   }
 }
