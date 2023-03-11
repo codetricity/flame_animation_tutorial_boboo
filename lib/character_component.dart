@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:animate/boboo_game.dart';
 import 'package:animate/main.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -15,14 +16,14 @@ enum CharacterState {
   moveEast
 }
 
-enum BobooDirection { right, left, up, down }
+enum CharacterDirection { right, left, up, down }
 
 class CharacterComponent extends SpriteAnimationGroupComponent<CharacterState>
     with HasGameRef<BobooGame> {
   final double speed;
   final JoystickComponent joystick;
   CharacterComponent({required this.speed, required this.joystick});
-  BobooDirection bobooDirection = BobooDirection.down;
+  CharacterDirection characterDirection = CharacterDirection.down;
 
   @override
   FutureOr<void> onLoad() async {
@@ -76,17 +77,17 @@ class CharacterComponent extends SpriteAnimationGroupComponent<CharacterState>
   @override
   void update(double dt) {
     if (joystick.direction == JoystickDirection.idle) {
-      switch (bobooDirection) {
-        case BobooDirection.right:
+      switch (characterDirection) {
+        case CharacterDirection.right:
           current = CharacterState.idleEast;
           break;
-        case BobooDirection.left:
+        case CharacterDirection.left:
           current = CharacterState.idleWest;
           break;
-        case BobooDirection.up:
+        case CharacterDirection.up:
           current = CharacterState.idleNorth;
           break;
-        case BobooDirection.down:
+        case CharacterDirection.down:
           current = CharacterState.idleSouth;
           break;
       }
@@ -94,28 +95,28 @@ class CharacterComponent extends SpriteAnimationGroupComponent<CharacterState>
 
     switch (joystick.direction) {
       case JoystickDirection.down:
-        bobooDirection = BobooDirection.down;
+        characterDirection = CharacterDirection.down;
         current = CharacterState.moveSouth;
         if (y < gameRef.size.y) {
           y += joystick.delta.y * speed * dt;
         }
         break;
       case JoystickDirection.up:
-        bobooDirection = BobooDirection.up;
+        characterDirection = CharacterDirection.up;
         current = CharacterState.moveNorth;
         if (y > 0) {
           y += joystick.delta.y * speed * dt;
         }
         break;
       case JoystickDirection.left:
-        bobooDirection = BobooDirection.left;
+        characterDirection = CharacterDirection.left;
         current = CharacterState.moveWest;
         if (x > 0) {
           x += joystick.delta.x * speed * dt;
         }
         break;
       case JoystickDirection.right:
-        bobooDirection = BobooDirection.right;
+        characterDirection = CharacterDirection.right;
         current = CharacterState.moveEast;
         if (x < gameRef.size.x) {
           x += joystick.delta.x * speed * dt;

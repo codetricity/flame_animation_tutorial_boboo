@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:animate/main.dart';
+import 'package:animate/boboo_game.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
@@ -22,6 +22,7 @@ class Door extends SpriteComponent
         break;
       case 2:
         gameRef.sceneNumber = 3;
+        removeFromParent();
         break;
       default:
         break;
