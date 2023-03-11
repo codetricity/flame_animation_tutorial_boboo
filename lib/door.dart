@@ -9,7 +9,7 @@ class Door extends SpriteComponent
     with HasGameRef<BobooGame>, CollisionCallbacks {
   @override
   FutureOr<void> onLoad() async {
-    debugMode = true;
+    // debugMode = true;
     add(RectangleHitbox());
     sprite = await gameRef.loadSprite('door.webp');
     return super.onLoad();
@@ -17,7 +17,17 @@ class Door extends SpriteComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    print('collision');
+    switch (gameRef.sceneNumber) {
+      case 1:
+        gameRef.sceneNumber = 2;
+        break;
+      case 2:
+        gameRef.sceneNumber = 3;
+        break;
+      default:
+        break;
+    }
+    gameRef.resetScene = true;
     super.onCollision(intersectionPoints, other);
   }
 
@@ -25,7 +35,6 @@ class Door extends SpriteComponent
   void onGameResize(Vector2 size) {
     this.size = Vector2.all(size.y * .2);
     position = Vector2(size.x * .8, size.y * .7);
-    print(size);
     super.onGameResize(size);
   }
 }

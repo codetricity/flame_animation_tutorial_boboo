@@ -14,21 +14,27 @@ void main() {
 
 class BobooGame extends FlameGame
     with HasTappables, HasDraggables, HasCollisionDetection {
-  final boboo = Boboo();
   late final JoystickComponent joystick;
-  final speed = 1.5;
-  late TextComponent joystickDirectionText;
-  SpriteComponent background = SpriteComponent();
+  late final TextComponent joystickDirectionText;
+  final SpriteComponent background = SpriteComponent();
+  int sceneNumber = 1;
+  bool resetScene = false;
+  late final Boboo boboo;
+
+  late final Sprite houseSprite;
+  late final Sprite officeSprite;
+  late final Sprite livingroomSprite;
 
   @override
   Color backgroundColor() => const Color.fromARGB(255, 41, 98, 139);
   @override
   FutureOr<void> onLoad() async {
+    houseSprite = await loadSprite('house_background.png');
+    officeSprite = await loadSprite('office_background.png');
+    livingroomSprite = await loadSprite('livingroom_background.png');
     add(background
-      ..sprite = await loadSprite('background.png')
+      ..sprite = houseSprite
       ..size = size);
-
-    add(boboo);
 
     final knobPaint = BasicPalette.red.withAlpha(170).paint();
     final backgroundPaint = BasicPalette.black.withAlpha(100).paint();
@@ -39,6 +45,9 @@ class BobooGame extends FlameGame
     );
 
     add(Door());
+    boboo = Boboo(speed: 1.5, joystick: joystick);
+    add(boboo);
+
     add(joystick);
     joystickDirectionText = TextComponent(
         text: 'joystick direction: ${joystick.direction}',
@@ -51,6 +60,23 @@ class BobooGame extends FlameGame
   @override
   void update(double dt) {
     joystickDirectionText.text = joystick.direction.toString();
+    if (resetScene) {
+      switch (sceneNumber) {
+        case 1:
+          background.sprite = houseSprite;
+          break;
+        case 2:
+          background.sprite = officeSprite;
+          break;
+        case 3:
+          background.sprite = livingroomSprite;
+          break;
+        default:
+          break;
+      }
+      boboo.position = canvasSize / 2;
+      resetScene = false;
+    }
     super.update(dt);
   }
 

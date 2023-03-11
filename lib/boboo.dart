@@ -20,11 +20,14 @@ enum BobooDirection { right, left, up, down }
 
 class Boboo extends SpriteAnimationGroupComponent<BobooState>
     with HasGameRef<BobooGame> {
+  final double speed;
+  final JoystickComponent joystick;
+  Boboo({required this.speed, required this.joystick});
   BobooDirection bobooDirection = BobooDirection.down;
 
   @override
   FutureOr<void> onLoad() async {
-    debugMode = true;
+    // debugMode = true;
     anchor = Anchor.center;
     add(RectangleHitbox.relative(Vector2.all(.5),
         parentSize: size, anchor: Anchor.center));
@@ -66,7 +69,7 @@ class Boboo extends SpriteAnimationGroupComponent<BobooState>
 
   @override
   void update(double dt) {
-    if (gameRef.joystick.direction == JoystickDirection.idle) {
+    if (joystick.direction == JoystickDirection.idle) {
       switch (bobooDirection) {
         case BobooDirection.right:
           current = BobooState.idleEast;
@@ -83,33 +86,33 @@ class Boboo extends SpriteAnimationGroupComponent<BobooState>
       }
     }
 
-    switch (gameRef.joystick.direction) {
+    switch (joystick.direction) {
       case JoystickDirection.down:
         bobooDirection = BobooDirection.down;
         current = BobooState.moveSouth;
         if (y < gameRef.size.y) {
-          y += gameRef.joystick.delta.y * gameRef.speed * dt;
+          y += joystick.delta.y * speed * dt;
         }
         break;
       case JoystickDirection.up:
         bobooDirection = BobooDirection.up;
         current = BobooState.moveNorth;
         if (y > 0) {
-          y += gameRef.joystick.delta.y * gameRef.speed * dt;
+          y += joystick.delta.y * speed * dt;
         }
         break;
       case JoystickDirection.left:
         bobooDirection = BobooDirection.left;
         current = BobooState.moveWest;
         if (x > 0) {
-          x += gameRef.joystick.delta.x * gameRef.speed * dt;
+          x += joystick.delta.x * speed * dt;
         }
         break;
       case JoystickDirection.right:
         bobooDirection = BobooDirection.right;
         current = BobooState.moveEast;
         if (x < gameRef.size.x) {
-          x += gameRef.joystick.delta.x * gameRef.speed * dt;
+          x += joystick.delta.x * speed * dt;
         }
         break;
       default:
