@@ -21,3 +21,4 @@ Flutter flame animation demo
 
 * resize
 * web, android, linux desktop
+* GitHub actions to deploy to web
