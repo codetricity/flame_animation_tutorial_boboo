@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,9 @@ import 'boboo.dart';
 import 'door.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Flame.device.setLandscape();
+  Flame.device.fullScreen();
   runApp(const GameWidget.controlled(gameFactory: BobooGame.new));
 }
 
