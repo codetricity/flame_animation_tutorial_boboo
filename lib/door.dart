@@ -1,9 +1,8 @@
 import 'dart:async';
 
+import 'package:animate/main.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-
-import 'main.dart';
 
 class Door extends SpriteComponent
     with HasGameRef<BobooGame>, CollisionCallbacks {

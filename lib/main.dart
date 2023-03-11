@@ -1,13 +1,12 @@
 import 'dart:async';
 
+import 'package:animate/boboo.dart';
+import 'package:animate/door.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/material.dart';
-
-import 'boboo.dart';
-import 'door.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,9 +35,11 @@ class BobooGame extends FlameGame
     houseSprite = await loadSprite('house_background.png');
     officeSprite = await loadSprite('office_background.png');
     livingroomSprite = await loadSprite('livingroom_background.png');
-    add(background
-      ..sprite = houseSprite
-      ..size = size);
+    add(
+      background
+        ..sprite = houseSprite
+        ..size = size,
+    );
 
     final knobPaint = BasicPalette.red.withAlpha(170).paint();
     final backgroundPaint = BasicPalette.black.withAlpha(100).paint();
@@ -54,8 +55,9 @@ class BobooGame extends FlameGame
 
     add(joystick);
     joystickDirectionText = TextComponent(
-        text: 'joystick direction: ${joystick.direction}',
-        position: Vector2(10, 10));
+      text: 'joystick direction: ${joystick.direction}',
+      position: Vector2(10, 10),
+    );
     add(joystickDirectionText);
 
     return super.onLoad();

@@ -1,9 +1,8 @@
 import 'dart:async';
 
+import 'package:animate/main.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-
-import 'main.dart';
 
 enum BobooState {
   idleNorth,
@@ -29,8 +28,13 @@ class Boboo extends SpriteAnimationGroupComponent<BobooState>
   FutureOr<void> onLoad() async {
     // debugMode = true;
     anchor = Anchor.center;
-    add(RectangleHitbox.relative(Vector2.all(.5),
-        parentSize: size, anchor: Anchor.center));
+    add(
+      RectangleHitbox.relative(
+        Vector2.all(.5),
+        parentSize: size,
+        anchor: Anchor.center,
+      ),
+    );
 
     animations = {
       BobooState.idleSouth: await createAnimation(row: 1),
@@ -63,7 +67,9 @@ class Boboo extends SpriteAnimationGroupComponent<BobooState>
     );
 
     final spriteAnimation = SpriteAnimation.fromFrameData(
-        await gameRef.images.load('boboo.png'), animationData);
+      await gameRef.images.load('boboo.png'),
+      animationData,
+    );
     return spriteAnimation;
   }
 
