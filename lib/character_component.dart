@@ -4,7 +4,7 @@ import 'package:animate/main.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-enum BobooState {
+enum CharacterState {
   idleNorth,
   idleSouth,
   idleWest,
@@ -17,11 +17,11 @@ enum BobooState {
 
 enum BobooDirection { right, left, up, down }
 
-class Boboo extends SpriteAnimationGroupComponent<BobooState>
+class CharacterComponent extends SpriteAnimationGroupComponent<CharacterState>
     with HasGameRef<BobooGame> {
   final double speed;
   final JoystickComponent joystick;
-  Boboo({required this.speed, required this.joystick});
+  CharacterComponent({required this.speed, required this.joystick});
   BobooDirection bobooDirection = BobooDirection.down;
 
   @override
@@ -37,16 +37,16 @@ class Boboo extends SpriteAnimationGroupComponent<BobooState>
     );
 
     animations = {
-      BobooState.idleSouth: await createAnimation(row: 1),
-      BobooState.idleNorth: await createAnimation(row: 2),
-      BobooState.idleEast: await createAnimation(row: 3),
-      BobooState.idleWest: await createAnimation(row: 4),
-      BobooState.moveSouth: await createAnimation(row: 5),
-      BobooState.moveNorth: await createAnimation(row: 6),
-      BobooState.moveEast: await createAnimation(row: 7),
-      BobooState.moveWest: await createAnimation(row: 8),
+      CharacterState.idleSouth: await createAnimation(row: 1),
+      CharacterState.idleNorth: await createAnimation(row: 2),
+      CharacterState.idleEast: await createAnimation(row: 3),
+      CharacterState.idleWest: await createAnimation(row: 4),
+      CharacterState.moveSouth: await createAnimation(row: 5),
+      CharacterState.moveNorth: await createAnimation(row: 6),
+      CharacterState.moveEast: await createAnimation(row: 7),
+      CharacterState.moveWest: await createAnimation(row: 8),
     };
-    current = BobooState.idleSouth;
+    current = CharacterState.idleSouth;
     return super.onLoad();
   }
 
@@ -67,7 +67,7 @@ class Boboo extends SpriteAnimationGroupComponent<BobooState>
     );
 
     final spriteAnimation = SpriteAnimation.fromFrameData(
-      await gameRef.images.load('boboo.png'),
+      await gameRef.images.load('dog.png'),
       animationData,
     );
     return spriteAnimation;
@@ -78,16 +78,16 @@ class Boboo extends SpriteAnimationGroupComponent<BobooState>
     if (joystick.direction == JoystickDirection.idle) {
       switch (bobooDirection) {
         case BobooDirection.right:
-          current = BobooState.idleEast;
+          current = CharacterState.idleEast;
           break;
         case BobooDirection.left:
-          current = BobooState.idleWest;
+          current = CharacterState.idleWest;
           break;
         case BobooDirection.up:
-          current = BobooState.idleNorth;
+          current = CharacterState.idleNorth;
           break;
         case BobooDirection.down:
-          current = BobooState.idleSouth;
+          current = CharacterState.idleSouth;
           break;
       }
     }
@@ -95,28 +95,28 @@ class Boboo extends SpriteAnimationGroupComponent<BobooState>
     switch (joystick.direction) {
       case JoystickDirection.down:
         bobooDirection = BobooDirection.down;
-        current = BobooState.moveSouth;
+        current = CharacterState.moveSouth;
         if (y < gameRef.size.y) {
           y += joystick.delta.y * speed * dt;
         }
         break;
       case JoystickDirection.up:
         bobooDirection = BobooDirection.up;
-        current = BobooState.moveNorth;
+        current = CharacterState.moveNorth;
         if (y > 0) {
           y += joystick.delta.y * speed * dt;
         }
         break;
       case JoystickDirection.left:
         bobooDirection = BobooDirection.left;
-        current = BobooState.moveWest;
+        current = CharacterState.moveWest;
         if (x > 0) {
           x += joystick.delta.x * speed * dt;
         }
         break;
       case JoystickDirection.right:
         bobooDirection = BobooDirection.right;
-        current = BobooState.moveEast;
+        current = CharacterState.moveEast;
         if (x < gameRef.size.x) {
           x += joystick.delta.x * speed * dt;
         }

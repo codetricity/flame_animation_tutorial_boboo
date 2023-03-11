@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:animate/boboo.dart';
+import 'package:animate/character_component.dart';
 import 'package:animate/door.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
@@ -22,7 +22,7 @@ class BobooGame extends FlameGame
   final SpriteComponent background = SpriteComponent();
   int sceneNumber = 1;
   bool resetScene = false;
-  late final Boboo boboo;
+  late final CharacterComponent boboo;
 
   late final Sprite houseSprite;
   late final Sprite officeSprite;
@@ -50,7 +50,7 @@ class BobooGame extends FlameGame
     );
 
     add(Door());
-    boboo = Boboo(speed: 1.5, joystick: joystick);
+    boboo = CharacterComponent(speed: 1.5, joystick: joystick);
     add(boboo);
 
     add(joystick);
