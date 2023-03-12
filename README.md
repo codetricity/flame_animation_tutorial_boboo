@@ -2,9 +2,15 @@
 
 Flutter flame animation demo
 
+## switch scene when character enters door
+
 ![screenshot](readme_assets/scenes.gif)
 
+## switch character
+
 ![change characters](readme_assets/character_changes.gif)
+
+## demo
 
 [web demo](https://codetricity.github.io/flame_animation_tutorial_boboo/)
 

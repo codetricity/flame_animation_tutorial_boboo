@@ -19,6 +19,8 @@ class BobooGame extends FlameGame
   late final CharacterComponent dog;
   late final CharacterComponent cat;
   late final CharacterComponent person;
+  late final CharacterComponent icecream;
+  late final CharacterComponent cactus;
 
   late final Sprite houseSprite;
   late final Sprite officeSprite;
@@ -74,6 +76,16 @@ class BobooGame extends FlameGame
       speed: 2,
       joystick: joystick,
       image: await images.load('person.png'),
+    );
+    icecream = CharacterComponent(
+      speed: 1.1,
+      joystick: joystick,
+      image: await images.load('icecream.png'),
+    );
+    cactus = CharacterComponent(
+      speed: 2.0,
+      joystick: joystick,
+      image: await images.load('cactus.png'),
     );
 
     add(joystick);

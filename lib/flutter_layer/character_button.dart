@@ -36,6 +36,12 @@ class CharacterButton extends StatelessWidget {
             case 'cat':
               game.add(game.cat);
               break;
+            case 'icecream':
+              game.add(game.icecream);
+              break;
+            case 'cactus':
+              game.add(game.cactus);
+              break;
             default:
               break;
           }
