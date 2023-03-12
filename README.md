@@ -4,6 +4,8 @@ Flutter flame animation demo
 
 ![screenshot](readme_assets/scenes.gif)
 
+![change characters](readme_assets/character_changes.gif)
+
 [web demo](https://codetricity.github.io/flame_animation_tutorial_boboo/)
 
 ## learning objectives
