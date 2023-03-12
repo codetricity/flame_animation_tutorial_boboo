@@ -21,6 +21,8 @@ class BobooGame extends FlameGame
   late final CharacterComponent person;
   late final CharacterComponent icecream;
   late final CharacterComponent cactus;
+  late final CharacterComponent cupcake;
+  late final CharacterComponent candy;
 
   late final Sprite houseSprite;
   late final Sprite officeSprite;
@@ -87,13 +89,22 @@ class BobooGame extends FlameGame
       joystick: joystick,
       image: await images.load('cactus.png'),
     );
-
+    cupcake = CharacterComponent(
+      speed: 2.0,
+      joystick: joystick,
+      image: await images.load('cupcake.png'),
+    );
+    candy = CharacterComponent(
+      speed: 2.0,
+      joystick: joystick,
+      image: await images.load('candy.png'),
+    );
     add(joystick);
     joystickDirectionText = TextComponent(
       text: 'joystick direction: ${joystick.direction}',
       position: Vector2(10, 10),
     );
-    add(joystickDirectionText);
+    // add(joystickDirectionText);
 
     return super.onLoad();
   }
@@ -115,8 +126,6 @@ class BobooGame extends FlameGame
         default:
           break;
       }
-      boboo.position = canvasSize / 2;
-      resetScene = false;
     }
     super.update(dt);
   }

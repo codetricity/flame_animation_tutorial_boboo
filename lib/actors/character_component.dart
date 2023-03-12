@@ -4,6 +4,7 @@ import 'package:animate/boboo_game.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/image_composition.dart';
+import 'package:flutter/widgets.dart' show debugPrint;
 
 enum CharacterState {
   idleNorth,
@@ -82,6 +83,12 @@ class CharacterComponent extends SpriteAnimationGroupComponent<CharacterState>
 
   @override
   void update(double dt) {
+    if (gameRef.resetScene) {
+      debugPrint('resetting scene ${gameRef.canvasSize / 2}');
+      position = gameRef.canvasSize / 2;
+      gameRef.resetScene = false;
+    }
+
     if (joystick.direction == JoystickDirection.idle) {
       switch (characterDirection) {
         case CharacterDirection.right:

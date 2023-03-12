@@ -27,6 +27,8 @@ class FlutterControls extends StatelessWidget {
             CharacterButton(game: game, character: 'person'),
             CharacterButton(game: game, character: 'icecream'),
             CharacterButton(game: game, character: 'cactus'),
+            CharacterButton(game: game, character: 'cupcake'),
+            CharacterButton(game: game, character: 'candy'),
             const SizedBox(
               width: 80,
             ),
