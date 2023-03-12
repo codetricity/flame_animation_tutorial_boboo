@@ -18,6 +18,7 @@ class BobooGame extends FlameGame
   late final CharacterComponent plant;
   late final CharacterComponent dog;
   late final CharacterComponent cat;
+  late final CharacterComponent person;
 
   late final Sprite houseSprite;
   late final Sprite officeSprite;
@@ -48,26 +49,31 @@ class BobooGame extends FlameGame
 
     add(door);
     boboo = CharacterComponent(
-      speed: 1.5,
+      speed: 2.1,
       joystick: joystick,
       image: await images.load('boboo.png'),
     );
     add(boboo);
 
     plant = CharacterComponent(
-      speed: 1.5,
+      speed: 1.2,
       joystick: joystick,
       image: await images.load('plant.png'),
     );
     dog = CharacterComponent(
-      speed: 1.5,
+      speed: 1.3,
       joystick: joystick,
       image: await images.load('dog.png'),
     );
     cat = CharacterComponent(
-      speed: 1.5,
+      speed: 1.4,
       joystick: joystick,
       image: await images.load('cat.png'),
+    );
+    person = CharacterComponent(
+      speed: 2,
+      joystick: joystick,
+      image: await images.load('person.png'),
     );
 
     add(joystick);

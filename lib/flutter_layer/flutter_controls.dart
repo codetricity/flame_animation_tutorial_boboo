@@ -1,9 +1,5 @@
-import 'package:animate/actors/character_component.dart';
 import 'package:animate/boboo_game.dart';
-import 'package:animate/flutter_layer/boboo_button.dart';
-import 'package:animate/flutter_layer/cat_button.dart';
-import 'package:animate/flutter_layer/dog_button.dart';
-import 'package:animate/flutter_layer/plant_button.dart';
+import 'package:animate/flutter_layer/character_button.dart';
 import 'package:flutter/material.dart';
 
 class FlutterControls extends StatelessWidget {
@@ -24,10 +20,11 @@ class FlutterControls extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            BobooButton(game: game),
-            PlantButton(game: game),
-            DogButton(game: game),
-            CatButton(game: game),
+            CharacterButton(game: game, character: 'boboo'),
+            CharacterButton(game: game, character: 'plant'),
+            CharacterButton(game: game, character: 'dog'),
+            CharacterButton(game: game, character: 'cat'),
+            CharacterButton(game: game, character: 'person'),
             const SizedBox(
               width: 80,
             ),
