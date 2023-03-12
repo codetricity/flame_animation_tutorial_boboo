@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:animate/boboo_game.dart';
-import 'package:animate/main.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/image_composition.dart';
 
 enum CharacterState {
   idleNorth,
@@ -22,7 +22,12 @@ class CharacterComponent extends SpriteAnimationGroupComponent<CharacterState>
     with HasGameRef<BobooGame> {
   final double speed;
   final JoystickComponent joystick;
-  CharacterComponent({required this.speed, required this.joystick});
+  final Image image;
+  CharacterComponent({
+    required this.speed,
+    required this.joystick,
+    required this.image,
+  });
   CharacterDirection characterDirection = CharacterDirection.down;
 
   @override
@@ -68,7 +73,8 @@ class CharacterComponent extends SpriteAnimationGroupComponent<CharacterState>
     );
 
     final spriteAnimation = SpriteAnimation.fromFrameData(
-      await gameRef.images.load('dog.png'),
+      // await gameRef.images.load('dog.png'),
+      image,
       animationData,
     );
     return spriteAnimation;

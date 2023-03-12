@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:animate/character_component.dart';
-import 'package:animate/door.dart';
+import 'package:animate/actors/character_component.dart';
+import 'package:animate/world/door.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
@@ -15,6 +15,7 @@ class BobooGame extends FlameGame
   int sceneNumber = 1;
   bool resetScene = false;
   late final CharacterComponent boboo;
+  late final CharacterComponent plant;
 
   late final Sprite houseSprite;
   late final Sprite officeSprite;
@@ -44,8 +45,18 @@ class BobooGame extends FlameGame
     );
 
     add(door);
-    boboo = CharacterComponent(speed: 1.5, joystick: joystick);
+    boboo = CharacterComponent(
+      speed: 1.5,
+      joystick: joystick,
+      image: await images.load('boboo.png'),
+    );
     add(boboo);
+
+    plant = CharacterComponent(
+      speed: 1.5,
+      joystick: joystick,
+      image: await images.load('plant.png'),
+    );
 
     add(joystick);
     joystickDirectionText = TextComponent(
