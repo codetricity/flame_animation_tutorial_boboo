@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:animate/actors/character_component.dart';
 import 'package:animate/world/door.dart';
+import 'package:animate/world/return_door.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
@@ -29,6 +30,7 @@ class BobooGame extends FlameGame
   late final Sprite livingroomSprite;
 
   final door = Door();
+  final returnDoor = ReturnDoor();
 
   @override
   Color backgroundColor() => const Color.fromARGB(255, 41, 98, 139);

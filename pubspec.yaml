@@ -1,5 +1,5 @@
 name: animate
-description: A new Flutter project.
+description: Demonstration of Flame animation
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -32,6 +32,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flame: ^1.6.0
+  # flame:
+  #   git:
+  #     url: https://github.com/flame-engine/flame.git
+  #     ref: main
+  #     path: packages/flame
   flame_lint: ^0.2.0
   flutter:
     sdk: flutter
@@ -69,6 +74,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/icon/
+    - assets/images/world/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
